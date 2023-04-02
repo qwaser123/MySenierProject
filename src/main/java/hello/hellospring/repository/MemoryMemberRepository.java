@@ -11,7 +11,7 @@ import java.util.HashMap;
 
 import hello.hellospring.domain.Member;
 
-@Repository //요것도 컨테이너 인식위해.
+
 public class MemoryMemberRepository implements MemberRepository{
 
 	private static Map<Long, Member> store= new HashMap<>();

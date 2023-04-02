@@ -10,12 +10,12 @@ import hello.hellospring.domain.Member;
 import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.repository.MemoryMemberRepository;
 
-@Service //스프링이 올라올때 서비스란걸 인식하고 스프링 컨테이너에 집어넣음.
+//@Service //스프링이 올라올때 서비스란걸 인식하고 스프링 컨테이너에 집어넣음.
 public class MemberService {
 
-	private final MemberRepository memberRepository;//new 햇던거 삭제.
+	private final MemberRepository memberRepository;
 	
-	@Autowired
+	
 	public MemberService(MemberRepository memberRepository) {
 		//constructor 단축키 :  alt shift s -> 
 		this.memberRepository = memberRepository;
