@@ -1,0 +1,29 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.7.10'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+}
+
+group = 'hello'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+//mavenCentral()이란 사이트에서아래 dependencies 라이브러리를 다운받아라.
+	mavenCentral() 
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-web' 
+	//애와 의존관계가 있는 라이브러리들을 gradle이 다 땡겨옴.이젠 톰캣 서버 설치같은거 안하고 걍 라이브러리로 땡겨옴.웹mvc도 여기포함.
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+//실무에서는 system.out.println 이 아닌 log로 출력해야 오류관리가 됨. logback과 slf4j로 운영함.
+//junit : 테스트 프레임웤
