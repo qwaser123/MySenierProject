@@ -3,11 +3,15 @@ package hello.hellospring.repository;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
+import org.springframework.stereotype.Repository;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import hello.hellospring.domain.Member;
 
+@Repository //요것도 컨테이너 인식위해.
 public class MemoryMemberRepository implements MemberRepository{
 
 	private static Map<Long, Member> store= new HashMap<>();
