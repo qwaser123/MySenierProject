@@ -1,16 +1,34 @@
 package hello.hellospring.service;
 
 import static org.junit.Assert.*;
+import java.util.Optional;
+import static org.assertj.core.api.Assertions.assertThat; //static import 와의 차이
 
-import org.assertj.core.api.Assertions; //static import 와의 차이
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 
 import hello.hellospring.domain.Member;
+import hello.hellospring.repository.MemoryMemberRepository;
 
 class MemberServiceTest {
 
 	
-	MemberService memberService = new MemberService();
+	MemberService memberService;
+	MemoryMemberRepository memberRepository;
+	
+	@BeforeEach 
+	public void beforeEach() {
+		memberRepository = new MemoryMemberRepository();
+		memberService = new MemberService(memberRepository);
+	}
+	
+	@AfterEach
+	public void  afterEach() {
+		memberRepository.clearStore(); //clear. 
+	}
+	
 	
 	@Test
 	void 회원가입() { //테스트는 한글로 적어도 상관없음.
@@ -23,7 +41,7 @@ class MemberServiceTest {
 		
 		//then
 		Member findMember = memberService.findOne(saveId).get();
-		Assertions.assertThat(member.getName()).isEqualTo(findMember.getName());
+		assertThat(member.getName()).isEqualTo(findMember.getName());
 	}
 
 	@Test
@@ -37,7 +55,13 @@ class MemberServiceTest {
 		
 		//when
 		memberService.join(member1);
-		memberService.join(member2);
+		IllegalStateException e = assertThrows(IllegalStateException.class, () -> memberService.join(member2));
+		
+		assertThat(e.getMessage()).isEqualTo("이미 존재하는 회원입니다."); //이방법은 진짜 모르겠네. 오류 왤까. try catch가 편함.
+		/*
+		 * try { memberService.join(member2); fail(); }catch (IllegalStateException e) {
+		 * assertThat(e.getMessage()).isEqualTo("이미 존재하는 회원입니다."); }
+		 */
 		//then
 		
 	}

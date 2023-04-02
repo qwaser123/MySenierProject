@@ -9,8 +9,13 @@ import hello.hellospring.repository.MemoryMemberRepository;
 
 public class MemberService {
 
-	private final MemberRepository memberRepository = new MemoryMemberRepository();
+	private final MemberRepository memberRepository;//new 햇던거 삭제.
 	
+public MemberService(MemberRepository memberRepository) {
+		//constructor 단축키 :  alt shift s -> 
+		this.memberRepository = memberRepository;
+	}
+
 //	회원가입 만들어보자
 	public Long join(Member member) {
 		//같은 이름의 중복회원 x. 리팩토링 개편하네
