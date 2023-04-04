@@ -19,6 +19,7 @@ dependencies {
 	//애와 의존관계가 있는 라이브러리들을 gradle이 다 땡겨옴.이젠 톰캣 서버 설치같은거 안하고 걍 라이브러리로 땡겨옴.웹mvc도 여기포함.
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
 }
 
 tasks.named('test') {
