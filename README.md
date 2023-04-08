@@ -13,6 +13,7 @@
    * controller로 외부요청 받고 service로 비즈니스 로직 만들고 repository에서 데이터 저장.
    * 정형화되어있는 패턴.
    * 컨트롤러 - 서비스 - 레파지토리 연결 
+   * 도메인 : 비즈니스 객체. 서비스와 연결되어있다?는 의미?
 
 2.  MemoryMemberRepository -> db에 연결하는 repository로 변경할 거임. 
 
